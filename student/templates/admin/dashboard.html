@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+<p>Manage students, teachers, courses.</p>
+
+<!-- ================= TEACHERS ================= -->
+<div class="card">
+  <h3>Teachers</h3>
+  <table  border="1" width="100%" >
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+    {% for t in teachers %}
+    <tr>
+      <td>{{ t.name }}</td>
+      <td>{{ t.email }}</td>
+      <td>
+        <a href="{% url 'edit_teacher' t.id %}">Edit</a> |
+        <a href="{% url 'delete_teacher' t.id %}"
+           onclick="return confirm('Delete this teacher?')">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">No teachers found</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+<!-- ================= STUDENTS ================= -->
+<div class="card">
+  <h3>Students</h3>
+  <table border="1" width="100%" >
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+    {% for s in students %}
+    <tr>
+      <td>{{ s.name }}</td>
+      <td>{{ s.email }}</td>
+      <td>
+        <a href="{% url 'edit_student' s.id %}">Edit</a> |
+        <a href="{% url 'delete_student' s.id %}"
+           onclick="return confirm('Delete this student?')">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">No students found</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+<!-- ================= COURSES ================= -->
+<div class="card">
+  <h3>Courses</h3>
+  <table border="1" width="100%">
+    <tr>
+      <th>Course Name</th>
+      <th>Teacher Assigned</th>
+    </tr>
+    {% for c in courses %}
+    <tr>
+      <td>{{ c.course_name }}</td>
+      <td>{{ c.teacher_name }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">No courses found</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

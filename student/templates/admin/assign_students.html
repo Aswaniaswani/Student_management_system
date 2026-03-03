@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h3>Assign Students to Course</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label>Course</label>
+        <select name="course_id">
+            {% for c in courses %}
+            <option value="{{ c.id }}">{{ c.course_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Students</label>
+        {% for s in students %}
+            <input type="checkbox" name="students" value="{{ s.id }}">
+            {{ s.name }} <br>
+        {% endfor %}
+
+        <br>
+        <button type="submit">Assign Students</button>
+    </form>
+</div>
+{% endblock %}

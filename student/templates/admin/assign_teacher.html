@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h3>Assign Teacher to Course</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label>Course</label>
+        <select name="course_id">
+            {% for c in courses %}
+            <option value="{{ c.id }}">{{ c.course_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Teacher</label>
+        <select name="teacher_id">
+            {% for t in teachers %}
+            <option value="{{ t.id }}">{{ t.name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Assign</button>
+    </form>
+</div>
+{% endblock %}

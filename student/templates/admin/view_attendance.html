@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h3>Attendance Records</h3>
+
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        {% for a in records %}
+        <tr>
+            <td>{{ a.student_name }}</td>
+            <td>{{ a.course_name }}</td>
+            <td>{{ a.date }}</td>
+            <td>
+                {% if a.present %}
+                    <span class="badge">Present</span>
+                {% else %}
+                    <span class="badge" style="background:#fee2e2;color:#991b1b;">Absent</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h3>Marks</h3>
+
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Marks</th>
+        </tr>
+        {% for m in records %}
+        <tr>
+            <td>{{ m.student_id }}</td>
+            <td>{{ m.course_id }}</td>
+            <td>{{ m.marks }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

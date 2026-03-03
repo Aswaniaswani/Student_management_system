@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Register User{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Register User</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <input name="name" placeholder="Full Name">
+        <input name="email" placeholder="Email">
+        <input name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+
+        <select name="role">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+{% endblock %}

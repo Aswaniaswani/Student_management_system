@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Mark Attendance</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Select Course</label>
+    <select name="course_id" required>
+        <option value="">-- Select Course --</option>
+        {% for course in courses %}
+        <option value="{{ course.id }}"
+            {% if course.id == selected_course_id %}selected{% endif %}>
+            {{ course.name }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" name="load_students">Load Students</button>
+</form>
+
+<hr>
+
+{% if students %}
+<form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="course_id" value="{{ selected_course_id }}">
+
+    <label>Date</label>
+    <input type="date" name="date" required>
+
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>Student</th>
+            <th>Present</th>
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>
+                <input type="checkbox"
+                       name="present_students"
+                       value="{{ student.id }}">
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <button type="submit" name="save_attendance">Save Attendance</button>
+</form>
+{% endif %}
+
+{% endblock %}

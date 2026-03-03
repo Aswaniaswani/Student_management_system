@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Attendance</h2>
+    <p class="badge">{{ attendance }}% Present</p>
+</div>
+
+<div class="card">
+    <h2>Marks</h2>
+
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Marks</th>
+        </tr>
+
+        {% for m in marks %}
+        <tr>
+            <td>{{ m.course_name }}</td>
+            <td>{{ m.marks }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="2">No marks available</td></tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

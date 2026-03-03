@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h3>My Courses</h3>
+
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for c in courses %}
+        <tr>
+            <td>{{ c.course_name }}</td>
+            <td>
+                <a href="{% url 'mark_attendance' %}">
+                    Mark Attendance
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="2">No courses assigned</td></tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
